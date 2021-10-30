@@ -14,7 +14,7 @@ public class UniversityLookup {
     protected static HashMap<Integer, String> allUniversities = new HashMap<Integer, String>();
 	
     // insert university data into a hashmap for constant lookup. (time complexity is spent on initial map population.)
-    public UniversityLookup() {
+    public UniversityLookup() throws IOException {
 	
 	
 	InputStream universityDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("us_institutions.json");
@@ -23,16 +23,11 @@ public class UniversityLookup {
 	String line = "";
 
 	StringBuilder responseStrBuilder = new StringBuilder();
-	try {
-	    while((line =  bR.readLine()) != null)
+	while((line =  bR.readLine()) != null)
 	    {
 	        responseStrBuilder.append(line);
 	    }
 	    universityDataStream.close();
-	} catch (IOException e) {
-	    System.out.println(e.getStackTrace());
-	}
-
 	JSONArray result = new JSONArray(responseStrBuilder.toString());     
 	long start = System.currentTimeMillis();
 	for (int i = 0; i < result.length(); i++)
