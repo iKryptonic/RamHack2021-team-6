@@ -4,9 +4,6 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.util.Properties;
-import java.util.Random;
 
 @WebServlet("/HomePage")
 public class HomePage extends HttpServlet
@@ -20,21 +17,14 @@ public class HomePage extends HttpServlet
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
 	    throws ServletException, IOException
     {
-	res.setContentType("text/html");
-	PrintWriter pw = res.getWriter();
-	
-	Random numberGen = new Random();
-	
-	pw.println("<html><body>");
-	pw.println("Hello World!");
-	pw.println("</body></html>");
-	
-	pw.close();
+        RequestDispatcher view = req.getRequestDispatcher("HomePage.jsp");
+        view.forward(req, res);
     }
     
     protected void doPost(HttpServletRequest req, HttpServletResponse res)
 	    throws ServletException, IOException
     {
-	
+        RequestDispatcher view = req.getRequestDispatcher("HomePage.jsp");
+        view.forward(req, res);
     }
 }

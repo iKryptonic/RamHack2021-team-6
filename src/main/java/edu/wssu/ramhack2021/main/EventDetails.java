@@ -16,19 +16,7 @@ public class EventDetails extends HttpServlet
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
 	    throws ServletException, IOException
     {
-	res.setContentType("text/html");
-	PrintWriter pw = res.getWriter();
-	
-	pw.println("<html><body>");
-	pw.println("Hello World!");
-	pw.println("</body></html>");
-	
-	pw.close();
-    }
-    
-    protected void doPost(HttpServletRequest req, HttpServletResponse res)
-	    throws ServletException, IOException
-    {
-	
+        RequestDispatcher view = req.getRequestDispatcher("EventDetails.jsp");
+        view.forward(req, res);
     }
 }
