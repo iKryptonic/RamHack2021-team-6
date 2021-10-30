@@ -71,11 +71,62 @@ public class TicketMasterInterface {
         DISTANCE_DATE_DESC ("distance,date,desc");
 	
 	private String currentMethod = null;
-	
+	private String literalString = null;
 	
 	SORT_METHOD(String method){
 	    this.currentMethod = method;
+	    
+	    switch (method) 
+	    {
+    	    case "random":
+    		this.literalString = "Random";
+    		break;
+    	    case "name,asc":
+    		this.literalString = "Name Ascending";
+    		break;
+    	    case "name,desc":
+    		this.literalString = "Name Descending";
+    		break;
+    	    case "date,asc":
+    		this.literalString = "Date Ascending";
+    		break;
+    	    case "date,desc":
+    		this.literalString = "Date Descending";
+    		break;
+    	    case "relevance,asc":
+    		this.literalString = "Relevance Ascending";
+    		break;
+    	    case "relevance,desc":
+    		this.literalString = "Relevance Descending";
+    		break;
+    	    case "distance,asc":
+    		this.literalString = "Distance Ascending";
+    		break;
+    	    case "distance,desc":
+    		this.literalString = "Distance Descending";
+    		break;
+    	    case "name,date,asc":
+    		this.literalString = "Name, Date Ascending";
+    		break;
+    	    case "name,date,desc":
+    		this.literalString = "Name, Date Descending";
+    		break;
+    	    case "date,name,asc":
+    		this.literalString = "Date, Name Ascending";
+    		break;
+    	    case "date,name,desc":
+    		this.literalString = "Date, Name Descending";
+    		break;
+    	    case "distance,date,asc":
+    		this.literalString = "Distance, Date Ascending";
+    		break;
+    	    case "distance,date,desc":
+    		this.literalString = "Distance, Date Descending";
+    		break;
+	    }
 	}
+	
+	public String toLiteral() { return this.literalString; }
 	
 	@Override public String toString() { return this.currentMethod; }
     }
