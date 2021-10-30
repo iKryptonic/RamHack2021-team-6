@@ -9,7 +9,7 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-// not implemented - instead we will send the json file to the front-end with jquery. 
+// not implemented - instead we will send the json file to the front-end with an AJAX request. 
 public class UniversityLookup {
     protected static HashMap<Integer, String> allUniversities = new HashMap<Integer, String>();
 	
