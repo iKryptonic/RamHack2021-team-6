@@ -74,7 +74,6 @@
 	        for (var i = 0; i < universityArray.length; i++) {
 	        	dataUniversity[universityArray[i].institution] = null;
 	        }
-	        console.log(dataUniversity);
 	        $('input.autocomplete').autocomplete({
 	          data: dataUniversity,
 	          limit: 5,
