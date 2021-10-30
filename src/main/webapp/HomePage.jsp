@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import ="utils.TicketMasterInterface.Event" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,37 +12,56 @@
 		<title>University Event Viewer Home</title>
 	</head>
 	
-	<body>
+	<%!
+		private void outNewLine(String Bits, jakarta.servlet.jsp.JspWriter myOut)
+		{  
+		  try{ myOut.println(Bits); } 
+		  catch(Exception eek) { }
+		}
+	%>
 	
-	<div class="section white">
-	    <div class="row container">
-	        <h2 class="header">Event Lookup by University</h2>
-			<div class="col s12">
-				<div class="row">
-					<form class="col s12">
-				  		<div class="row">
-							<div class="col s12">University:
-							  <div class="input-field inline">
-									<input type="text" id="autocomplete-input" class="autocomplete">
-									<label for="autocomplete-input">University Name</label>
+	<body>
+		<div class="section white">
+		    <div class="row container">
+		        <h2 class="header">Event Lookup by University</h2>
+				<div class="col s12">
+					<div class="row">
+						<form class="col s12" action="/RamsHack2021-team-6/index">
+					  		<div class="row">
+								<div class="col s12">University:
+								  <div class="input-field inline">
+										<input name="universityName" type="text" id="autocomplete-input" class="autocomplete">
+										<label for="autocomplete-input">University Name</label>
+									</div>
+								<button style="margin-left: 5%" value="anyvalue" class="btn waves-effect waves-light" type="submit" name="action">Submit
+									<i class="material-icons right">send</i>
+							  	</button>
 								</div>
-							<button style="margin-left: 5%" class="btn waves-effect waves-light" type="submit" name="action">Submit
-								<i class="material-icons right">send</i>
-						  	</button>
 							</div>
-						</div>
-					</form>
+						</form>
+					</div>
+					<!-- University Data Retainer -->
+					<div>
+						<ul class="collection with-header">
+							<li class="collection-header"><h4>Events around ${universityName}</h4></li>
+							
+							<% Event[] allEvents = (Event[]) request.getAttribute("Events");
+						        int pointer = 0;
+					            outNewLine("<tr>", out);
+					            if(allEvents != null)
+					            {
+							        for(Event e : allEvents)
+							        {
+							            if(e != null)
+							           		outNewLine("<li class=\"collection-item\"><div>" + e.getName() + " - " + e.getDate() + " - " + e.getGenre() + "<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"/RamsHack2021-team-6/eventdetails?eventID=" + e.getID() + "\" class=\"secondary-content\"><i class=\"material-icons\">send</i></a></div></li>", out);
+								  	}
+					            }
+						  	%>
+						</ul>
+					</div>
 				</div>
-				<!-- University Data Retainer -->
-				<div>
-					<ul class="collection with-header">
-						<li class="collection-header"><h4>Events around ${universityName}</h4></li>
-						<li class="collection-item"><div>${eventName} - ${eventDate} - ${eventGenre}<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-				  	</ul>
-				</div>
-			</div>
-	    </div>
-	</div>
+		    </div>
+		</div>
 	</body>
 	<footer class="page-footer teal">
 	  <div class="container">
@@ -76,7 +96,6 @@
 	        }
 	        $('input.autocomplete').autocomplete({
 	          data: dataUniversity,
-	          limit: 5,
 	        });
 	      }
 	    });

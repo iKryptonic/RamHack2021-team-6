@@ -42,7 +42,7 @@
 							<span><div class="col s12 offset-s6" style="margin-bottom: 5%; margin-top: 10%"><a target="_blank" rel="noopener noreferrer" href="${eventPage}" class="waves-effect waves-light btn-large">Visit event page</a></div></span>
 						</li>
 						<li>
-							<span><div class="col s12 offset-s7"><a class="waves-effect waves-light btn">Return Home</a></div></span>
+							<span><div class="col s12 offset-s7"><a href="/RamsHack2021-team-6/index" class="waves-effect waves-light btn">Return Home</a></div></span>
 						</li>
 					</ul>
 				</div>

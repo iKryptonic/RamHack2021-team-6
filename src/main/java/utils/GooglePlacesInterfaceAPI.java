@@ -16,6 +16,10 @@ import com.google.maps.model.PlacesSearchResult;
 
 public class GooglePlacesInterfaceAPI {
     
+    public GooglePlacesInterfaceAPI() {
+	
+    }
+    
     protected final Properties prop = new Properties();
     
     {
@@ -70,6 +74,9 @@ public class GooglePlacesInterfaceAPI {
                 possibleZips[pointer] = m.group();
             }
     	
+            if(pointer <0)
+        	pointer = 0;
+            
             // return most probable zip code
             return possibleZips[pointer];
             }

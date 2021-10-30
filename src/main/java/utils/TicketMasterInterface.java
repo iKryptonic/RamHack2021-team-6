@@ -315,15 +315,19 @@ public class TicketMasterInterface {
 	
 	// format our API key into the request
 	String finalRequest = String.format(baseUrl + "events.json?size=%d&apikey=%s&postalCode=%s&keyword=%s&radius=%d&sort=%s", size, apiKey, postalCode, keyword, radius, sortMethod);
+	
 	QuickHTTPRequest webAPI = new QuickHTTPRequest();
 	
 	// send request to ticketmaster
 	response = webAPI.makeRequest(finalRequest);
 	
-	// null check
 	if(response != null)
 	{
-	    JSONArray eventData = new JSONObject(response).getJSONObject("_embedded").getJSONArray("events");
+	    JSONObject arrayData = new JSONObject(response);
+	    JSONArray eventData = null;
+	    if(arrayData.has("_embedded")) 
+	    {
+	    eventData = arrayData.getJSONObject("_embedded").getJSONArray("events");
 	    
 	    Event[] events = new Event[size]; // create new array to hold formatted events
 	    for (int i = 0; i < eventData.length(); ++i) {
@@ -332,6 +336,7 @@ public class TicketMasterInterface {
 		events[i] = parseEventData(rec);
 		}
 	    return events;
+	    }
 	}
 	return null;
     }  
